@@ -24,7 +24,7 @@ Button (float ypos, sf::Vector2f size, sf::Texture &texture, sf::Color color) //
     rect.setSize(size);
     rect.setTexture(&texture);
     rect.setFillColor(color);
-    indicator.setPosition(sf::Vector2f(size.x*double(3/4), ypos + size.y / 2)); //might need to fiddle with this connor. - connor 12/7
+    indicator.setPosition(sf::Vector2f(size.x*double(3/4), ypos + size.y / 2)); //might need to fiddle with this connor. - connor 4/30
     
     if(!butt_texture.loadFromFile("botton.png"));
     {
