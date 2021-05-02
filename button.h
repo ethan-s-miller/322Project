@@ -60,7 +60,7 @@ Button (float ypos, sf::Vector2f size, sf::Color color, std::string label, sf::F
 
     rect.setTexture(&rect_texture);
     rect.setFillColor(color);
-    indicator.setPosition(sf::Vector2f(size.x * 9/10, ypos + size.y * .33)); //might need to fiddle with this connor. - connor 12/7
+    indicator.setPosition(sf::Vector2f(size.x * 9/10, ypos + size.y * .33)); //might need to fiddle with this connor. - connor 5/1
     //std::cout  << "yo";
     indicator.setRadius(15.0f);
     indicator.setTexture(&butt_texture);
@@ -90,7 +90,7 @@ sf::Vector2f get_size() const
     return rect.getSize();
 }
 
-bool hover(sf::Window &window) // needs to be edited if you are going to use with buttons not on left of screen. -connor 12/8
+bool hover(sf::Window &window) // needs to be edited if you are going to use with buttons not on left of screen. -connor 5/1
 {
     sf::Vector2i mouse_pos = sf::Mouse::getPosition(window);
     if(mouse_pos.x < rect.getSize().x && mouse_pos.y < (rect.getSize().y + rect.getPosition().y) && mouse_pos.y > (rect.getPosition().y))
