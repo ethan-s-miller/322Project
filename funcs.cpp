@@ -112,7 +112,7 @@ void run_program()
 
 
 
-  sf::RectangleShape text_sq(sf::Vector2f(650.0f, 510.0f)); //changed to 450 12/10-connor
+  sf::RectangleShape text_sq(sf::Vector2f(650.0f, 510.0f)); 
   text_sq.setFillColor(sf::Color(47,79,79,180));
   text_sq.setPosition(500,90);
   text_sq.setOutlineColor(sf::Color(35, 67,67,220));
