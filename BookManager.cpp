@@ -26,7 +26,6 @@ BookManager::~BookManager()
 void BookManager::add(Book book)
 {
     std::ofstream library(this->mFile, std::ofstream::app);
-    library.open(this->mFile);
     if(!library.is_open())
     {
         library.close();
@@ -44,7 +43,6 @@ void BookManager::add(Book book)
 void BookManager::remove(std::string isbn)
 {
     std::fstream library(this->mFile, std::fstream::in | std::fstream::out);
-    library.open(this->mFile);
     if(!library.is_open())
     {
         library.close();
