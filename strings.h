@@ -7,5 +7,8 @@ std::string lookup_book_str = "Please type the book you would like to lookup in 
 
 std::string help = "More help coming soon.";
 
+std::string state_input_str = "";
+
+std::string date_input_str = "";
 
 #endif
