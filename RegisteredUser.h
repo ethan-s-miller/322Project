@@ -4,7 +4,7 @@
 #include<iostream>
 #include<string>
 #include<list>
-#include<Books.h>
+#include"book.h"
 
 using namespace std;
 
@@ -35,7 +35,7 @@ class RegisteredUser
         return this->isLoggedIn = isLoggedIn;
     }
 
-    list<Books> setIssuedBooks()
+    list<Book> setIssuedBooks()
     {
         return this->issuedBooks;
     }
@@ -66,7 +66,7 @@ class RegisteredUser
         return this->isLoggedIn;
     }
 
-    list<Books> getIssuedBooks()
+    list<Book> getIssuedBooks()
     {
         return this->issuedBooks;
     }

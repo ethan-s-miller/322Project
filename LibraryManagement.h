@@ -11,11 +11,17 @@ using namespace std;
 */
 
 #include<iostream>
+#include<list>
+#include"User.h"
+#include"book.h"
 
 class LibraryManagement
 {
     private:
+
+
         int userType;
+        list<Book> *books;
 
 
     protected:
@@ -23,7 +29,11 @@ class LibraryManagement
         void createObject();
 
     public:
-        LibraryManagement(){ this->userType = 0;}
+        LibraryManagement()
+        { 
+            this->userType = 0; 
+            books = new list<Book>;
+        }
         void displayMenu();
         int getUserType();
         void searchBooks();
@@ -81,23 +91,29 @@ void LibraryManagement::setUserType(int type)
 
 void LibraryManagement::createObject()
 {
-    switch (getUserType())
+    User *user;
+    int type = getUserType();
+    if(type == 1)
     {
-    case 1:
-        User user;
-        break;
-    case 2:
-        /* code */
-        break;
-    case 3:
-        /* code */
-        break;
-    case 4:
-        /* code */
-        break;
-    
-    default:
-        break;
+        user = new User;
+        string bookName;
+        cout<<"\nEnter the Book name: ";
+        cin>>bookName;
+        list<Book>* searchedBooks = user->searchForBooks(bookName,books);
+        user->printBookDetails(searchedBooks);
+    }
+
+    else if(type == 2)
+    {
+
+    }
+    else if(type == 3)
+    {
+
+    }
+    else if(type == 4)
+    {
+
     }
 }
 
