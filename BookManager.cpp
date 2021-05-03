@@ -57,7 +57,6 @@ void BookManager::remove(std::string isbn)
         std::getline(library, line);
         books += line;
     }
-    library.close();
 
     size_t pos = books.find(isbn);
     if (pos == std::string::npos)
@@ -65,6 +64,7 @@ void BookManager::remove(std::string isbn)
     books.erase(pos, books.find_first_of('\n', pos) + 1);
 
     library << books;
+    library.close();
 }
 
 Book BookManager::get(std::string isbn)
@@ -92,9 +92,11 @@ Book BookManager::get(std::string isbn)
             
             std::string genre = line;
 
+            library.close();
             return Book(title, author, genre, isbn);
         }
     }
+    library.close();
     throw isbn; // Failed to retrieve the book of the given isbn
 }
 
@@ -129,5 +131,6 @@ std::vector<Book> BookManager::search(std::string searchString)
             results.push_back(Book(title, author, genre, isbn));
         }
     }
+    library.close();
     return results;
 }
