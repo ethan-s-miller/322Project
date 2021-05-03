@@ -92,13 +92,42 @@ Book BookManager::get(std::string isbn)
             
             std::string genre = line;
 
-            return Book(title, author, genre, isbn);;
+            return Book(title, author, genre, isbn);
         }
     }
     throw isbn; // Failed to retrieve the book of the given isbn
 }
 
-Book BookManager::search(std::string searchString)
+std::vector<Book> BookManager::search(std::string searchString)
 {
+    std::vector<Book> results;
+    
+    std::ifstream library(this->mFile);
+    if(!library.is_open())
+    {
+        library.close();
+        throw mFile; // Failed to open mFile with read access
+    }
 
+    std::string line;
+    while(!library.eof())
+    {
+        std::getline(library, line);
+        if (line.find(searchString) != std::string::npos)
+        {
+            std::string isbn = line.substr(0, line.find_first_of(','));
+            line = line.substr(line.find_first_of(','), line.size() - 1);
+            
+            std::string title = line.substr(0, line.find_first_of(','));
+            line = line.substr(line.find_first_of(','), line.size() - 1);
+            
+            std::string author = line.substr(0, line.find_first_of(','));
+            line = line.substr(line.find_first_of(','), line.size() - 1);
+            
+            std::string genre = line;
+
+            results.push_back(Book(title, author, genre, isbn));
+        }
+    }
+    return results;
 }
