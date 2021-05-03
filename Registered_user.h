@@ -1,13 +1,13 @@
 #ifndef REGISTERED_USER
 #define REGISTERED_USER
-#include "includes.h"
+#include "book.h"
 class Registered_user
 {
 private:
     std::string name;
     std::string emailId;
     std::string password;
-    std::vector<Books> booksIssued;
+    std::vector<Book> bookIssued;
     bool isLoggedIn = false;
 
 protected:
@@ -25,7 +25,7 @@ public:
     Registered_user(std::string name);
     ~Registered_user();
     
-    std::vector<Books> getBooksIssued() { return bookIssued;}
+    std::vector<Book> getBooksIssued() { return bookIssued;}
     
     std::string getName() {return name;}
     
