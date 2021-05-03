@@ -126,21 +126,21 @@ void run_program()
   int cur_btn = -1;
 
   Window.setKeyRepeatEnabled(false);
-  Window.draw(back_g);
   while(Window.isOpen())
   {
+      Window.draw(back_g);
       for(int i = 0; i < 7; i++)
     {
       butt_arr[i].draw_to_screen(Window);
 
     }
     
+    
     state_input.draw_to_screen(Window);
     Window.draw(state_label);
     date_input.draw_to_screen(Window);
     Window.draw(date_label);
     Window.draw(text_sq);
-
     
       sf::Event Event;
       while(Window.pollEvent(Event))
@@ -364,6 +364,9 @@ void drawLoginPage(sf::RenderWindow& Window){
   sf::RectangleShape back_g(sf::Vector2f(1300.0f,700.0f));
   back_g.setTexture(&background);
 
+  std::ifstream file;
+  file.open("users.csv");
+
   sf::Font ocra;
   ocra.loadFromFile("OCRAEXT.TTF");
   Textbox state_input(sf::Vector2f(430.0f, 230.0f), sf::Vector2f(350.0f,35.0f), ocra);
@@ -395,10 +398,22 @@ void drawLoginPage(sf::RenderWindow& Window){
   password.setFillColor(sf::Color::Red);
   password.setString("Password:");
 
+  sf::Text invalid;
+  invalid.setFont(ocra);
+  invalid.setPosition(sf::Vector2f(250,130));
+  invalid.setCharacterSize(30);
+  invalid.setFillColor(sf::Color::Red);
+  invalid.setString("Invalid username/password, try again");
+
   Button verify(0, sf::Vector2f(180,40), sf::Color::White, std::string("Verify"), ocra);
   verify.set_pos(sf::Vector2f(800,400));
 
-  while(Window.isOpen()){
+  Button back(0, sf::Vector2f(180,40), sf::Color::White, std::string("Back"), ocra);
+  back.set_pos(sf::Vector2f(50,600));
+
+  bool foundUser = false;
+
+  while(Window.isOpen() && foundUser == false){
   sf::Event Event;
     while(Window.pollEvent(Event))
     {
@@ -409,6 +424,7 @@ void drawLoginPage(sf::RenderWindow& Window){
       Window.draw(username);
       Window.draw(password);
       verify.draw_to_screen(Window);
+      back.draw_to_screen(Window);
       switch(Event.type)
       {
           case sf::Event::Closed:
@@ -432,6 +448,10 @@ void drawLoginPage(sf::RenderWindow& Window){
               verify.set_color(sf::Color::Green);
             else
               verify.set_color(sf::Color::White);
+            if(back.hover(Window))
+              back.set_color(sf::Color::Green);
+            else
+              back.set_color(sf::Color::White);
           }
           case sf::Event::MouseButtonPressed: // check whether the user selected the boxes
           {
@@ -444,10 +464,37 @@ void drawLoginPage(sf::RenderWindow& Window){
               pass_input.set_selected(true);
               state_input.set_selected(false);
             }
+            if(cur_pos.x > verify.get_pos().x && cur_pos.x < verify.get_pos().x + verify.get_size().x && cur_pos.y > verify.get_pos().y && cur_pos.y < verify.get_pos().y + verify.get_size().y){ // if the user clicked verify check if they entered a real username and password
+              verify.set_indicator(true);
+              std::string username = state_input.get_string();
+              std::string password = pass_input.get_string();
+              //std::cout << username << std::endl;
+              //std::cout << password << std::endl;
+              std::string verifiedUsername;
+              std::string verifiedPassword;
+              while(!file.eof() && foundUser == false){
+                getline(file,verifiedUsername,',');
+                std::cout << verifiedUsername << std::endl;
+                getline(file,verifiedPassword,'\n');
+                std::cout << verifiedPassword << std::endl;
+                if(verifiedUsername == username && verifiedPassword == password){
+                  foundUser = true;
+                  std::cout << "found user" << std::endl;
+                  return;
+                }
+              }
+              //Window.draw(invalid);
+            } else {
+              verify.set_indicator(false);
+            }
+            if(back.hover(Window)){
+              return;
+            }
           }
       }
     }
   Window.display();
   }
+  file.close();
   return;
 }
