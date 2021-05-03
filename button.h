@@ -92,8 +92,9 @@ sf::Vector2f get_size() const
 
 bool hover(sf::Window &window) // needs to be edited if you are going to use with buttons not on left of screen. -connor 5/1
 {
+    
     sf::Vector2i mouse_pos = sf::Mouse::getPosition(window);
-    if(mouse_pos.x < rect.getSize().x && mouse_pos.y < (rect.getSize().y + rect.getPosition().y) && mouse_pos.y > (rect.getPosition().y))
+    if(mouse_pos.x < (rect.getSize().x + rect.getPosition().x) && mouse_pos.x > rect.getPosition().x && mouse_pos.y < (rect.getSize().y + rect.getPosition().y) && mouse_pos.y > (rect.getPosition().y))
     {
         return true;
     }
@@ -103,6 +104,14 @@ bool hover(sf::Window &window) // needs to be edited if you are going to use wit
 void set_color(sf::Color color)
 {
     rect.setFillColor(color);
+}
+
+void set_pos(sf::Vector2f newPos)
+{
+    rect.setPosition(newPos);
+    label.setPosition(sf::Vector2f(newPos.x, newPos.y));
+    indicator.setPosition(sf::Vector2f(newPos.x + 140, newPos.y + 5));
+    std::cout << indicator.getPosition().x << std::endl << "crazy shit" << std::endl;
 }
 
 void set_font(sf::Font & font)
