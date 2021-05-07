@@ -2,7 +2,7 @@
 #define FUNCS_H
 #include "button.h"
 #include "textbox.h"
-//void fill_button_arr(Button button_arr[]); potential nonsense but i hate deleting things connor-12/7
+//void fill_button_arr(Button button_arr[]); potential nonsense but i hate deleting things connor-
 
 void reset_indicators (Button button_arr[], int cur_selected);
 
