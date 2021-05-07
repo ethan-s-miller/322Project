@@ -454,6 +454,7 @@ void drawLoginPage(sf::RenderWindow& Window, int &cur_btn){
               back.set_color(sf::Color::Green);
             else
               back.set_color(sf::Color::White);
+            break;
           }
           case sf::Event::MouseButtonPressed: // check whether the user selected the boxes
           {
