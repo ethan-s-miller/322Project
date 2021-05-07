@@ -3,5 +3,6 @@
 
 #include "strings.h"
 #include <vector>
+#include <fstream>
 
 #endif
