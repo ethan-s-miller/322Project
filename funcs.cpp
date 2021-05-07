@@ -19,7 +19,7 @@ void narg();
 void nag();
 void reset_indicators (Button button_arr[], int cur_select)
 {
-    for (int i = 0; i < 7; i++) //update this so it doesn't depend on magic num connor. -connor 12/8/20
+    for (int i = 0; i < 7; i++) //update this so it doesn't depend on magic num connor. -connor 5/1/21
     {
         if(i == cur_select)
         {
@@ -35,6 +35,7 @@ void reset_indicators (Button button_arr[], int cur_select)
 
 void run_program()
 {
+  
   
   sf::RenderWindow Window(sf::VideoMode(1300, 700), "Library Management");
   
@@ -274,7 +275,8 @@ void run_program()
         case 3:
         break;
         case 4: // user login
-        drawLoginPage(Window);
+
+        drawLoginPage(Window, cur_btn);
         break;
         case 5:
       //  std::cout << "case 5";
@@ -355,7 +357,7 @@ void write_to_screen(sf::Event &Event, Textbox &tbox, std::string &out)//doesn't
 
 }
 
-void drawLoginPage(sf::RenderWindow& Window){
+void drawLoginPage(sf::RenderWindow& Window, int &cur_btn){
   Window.clear();
   std::cout << "Drawing login page" << std::endl;
   sf::Texture background;
@@ -488,6 +490,7 @@ void drawLoginPage(sf::RenderWindow& Window){
               verify.set_indicator(false);
             }
             if(back.hover(Window)){
+              cur_btn = -1;
               return;
             }
           }
