@@ -10,7 +10,7 @@ void run_program();
 
 void write_to_screen(sf::Event &Event, Textbox &tbox, std::string &out); // does not literally write to screen. if someone has a better name lemme know connor- 5-1-21
 
-void drawLoginPage(sf::RenderWindow& Window, int &); // draws the user login window
+void drawLoginPage(sf::RenderWindow& Window); // draws the user login window
 
 
 

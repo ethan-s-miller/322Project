@@ -276,7 +276,8 @@ void run_program()
         break;
         case 4: // user login
 
-        drawLoginPage(Window, cur_btn);
+        drawLoginPage(Window);
+        cur_btn = -1;
         break;
         case 5:
       //  std::cout << "case 5";
@@ -357,7 +358,7 @@ void write_to_screen(sf::Event &Event, Textbox &tbox, std::string &out)//doesn't
 
 }
 
-void drawLoginPage(sf::RenderWindow& Window, int &cur_btn){
+void drawLoginPage(sf::RenderWindow& Window){
   Window.clear();
   std::cout << "Drawing login page" << std::endl;
   sf::Texture background;
@@ -491,7 +492,7 @@ void drawLoginPage(sf::RenderWindow& Window, int &cur_btn){
               verify.set_indicator(false);
             }
             if(back.hover(Window)){
-              cur_btn = -1;
+              
               return;
             }
           }
