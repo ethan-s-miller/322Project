@@ -278,6 +278,7 @@ void run_program()
 
         drawLoginPage(Window);
         cur_btn = -1;
+        reset_indicators(butt_arr, -1);
         break;
         case 5:
       //  std::cout << "case 5";
