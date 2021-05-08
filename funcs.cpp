@@ -279,6 +279,7 @@ void run_program()
         drawLoginPage(Window);
         cur_btn = -1;
         reset_indicators(butt_arr, -1);
+        date_input.set_text(date_input_str);
         break;
         case 5:
       //  std::cout << "case 5";
@@ -469,7 +470,9 @@ void drawLoginPage(sf::RenderWindow& Window){
               pass_input.set_selected(true);
               state_input.set_selected(false);
             }
-            if(cur_pos.x > verify.get_pos().x && cur_pos.x < verify.get_pos().x + verify.get_size().x && cur_pos.y > verify.get_pos().y && cur_pos.y < verify.get_pos().y + verify.get_size().y){ // if the user clicked verify check if they entered a real username and password
+            if (verify.hover(Window)){
+            //if(cur_pos.x > verify.get_pos().x && cur_pos.x < verify.get_pos().x + verify.get_size().x && cur_pos.y > verify.get_pos().y && cur_pos.y < verify.get_pos().y + verify.get_size().y){ // if the user clicked verify check if they entered a real username and password
+              
               verify.set_indicator(true);
               std::string username = state_input.get_string();
               std::string password = pass_input.get_string();
@@ -477,6 +480,7 @@ void drawLoginPage(sf::RenderWindow& Window){
               //std::cout << password << std::endl;
               std::string verifiedUsername;
               std::string verifiedPassword;
+              date_input_str = username;
               while(!file.eof() && foundUser == false){
                 getline(file,verifiedUsername,',');
                 std::cout << verifiedUsername << std::endl;
@@ -488,6 +492,11 @@ void drawLoginPage(sf::RenderWindow& Window){
                   return;
                 }
               }
+              // if(verify.hover(Window))
+              // {
+              //   verify.set_indicator(true);
+              //   date_input_str = state_input.get_string();
+              // }
               //Window.draw(invalid);
             } else {
               verify.set_indicator(false);
