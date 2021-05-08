@@ -81,7 +81,7 @@ void run_program()
   sf::Text date_label;
   
   date_label.setFont(ocra);
-  date_label.setString("Date:");
+  date_label.setString("User:");
   date_label.setCharacterSize(20);
   date_label.setPosition(sf::Vector2f(75.0f,550.0f));
   date_label.setFillColor(sf::Color::Red);

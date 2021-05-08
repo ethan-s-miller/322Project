@@ -9,6 +9,6 @@ std::string help = "More help coming soon.";
 
 std::string state_input_str = "";
 
-std::string date_input_str = "";
+std::string date_input_str = "None";
 
 #endif
